@@ -24,7 +24,7 @@ public class CrosshairController : MonoBehaviour{
     void UpdateCrosshair(){
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity)){
-            hitObj = hit.transform.gameObject.GetComponent<IInteractable>();
+            hitObj = hit.transform.gameObject.GetComponentInChildren<IInteractable>();
             Debug.DrawLine(transform.position, hit.point);
         }
     }
