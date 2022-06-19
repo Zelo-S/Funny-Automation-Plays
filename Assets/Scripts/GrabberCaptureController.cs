@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GrabberCaptureController : MonoBehaviour{
     
-    private BoxCollider capture;
-    
-    void Awake(){
-        capture = GetComponent<BoxCollider>();
+    void OnTriggerEnter(Collider other){
+        var otherObj = other.gameObject.GetComponent<ITransportable>();
+        otherObj?.Transport();
     }
 
 }

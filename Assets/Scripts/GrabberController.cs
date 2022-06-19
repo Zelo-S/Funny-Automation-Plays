@@ -7,11 +7,12 @@ public class GrabberController : MonoBehaviour, IInteractable{
     public Animator animator;
     
     public void Use(){
-        Debug.Log("Hello");
+        GrabberGrab();
     }
     
     void GrabberGrab(){
         animator.SetTrigger("OnGrabberGrab");
+        Debug.Log("Operating Grabber!");
     }
 
 }
