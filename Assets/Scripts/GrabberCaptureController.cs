@@ -5,8 +5,8 @@ using UnityEngine;
 public class GrabberCaptureController : MonoBehaviour{
     
     void OnTriggerEnter(Collider other){
-        var otherObj = other.gameObject.GetComponent<ITransportable>();
-        otherObj?.Transport();
+        var otherObj = other.gameObject.GetComponent<IGrabable>();
+        otherObj?.MoveSpot(this.transform);
     }
 
 }
