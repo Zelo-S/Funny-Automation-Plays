@@ -5,5 +5,6 @@ using UnityEngine;
 public interface IGrabable {
     
     void MoveSpot(Transform parent); 
+    void DropSpot(); 
 
 }

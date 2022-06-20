@@ -3,28 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class GrabberController : MonoBehaviour, IInteractable{
+public class GrabberController : MonoBehaviour{
     
     public Animator animator;
+    public BoxCollider grabPos;
+    public BoxCollider dropPos;
+    public IGrabable otherObj{ get; set; }
     
-    void Awake(){
-    }
-    
-    public void Use(){
-        AnimateGrabber();
-    }
-    
-    void AnimateGrabber(){
+    void OnTriggerEnter(Collider other){
+        otherObj = other.gameObject.GetComponent<IGrabable>();
+        otherObj?.MoveSpot(this.transform);
+
+        // Animate Grabber
         GrabberGrab();
     }
     
-    void GrabberGrab(){
-        animator.SetTrigger("OnGrabberGrab");
+    public void GrabberGrab(){
+        animator.SetTrigger("OnObjectDetected");
     }
     
     // TODO: check if the drop spot is unoccupied
     void GrabberDrop(){
-        animator.SetTrigger("OnGrabberDrop");
+        Debug.Log("Dropping object!");
+        // unparent the currently held item
+        otherObj?.DropSpot();    
     }
 
 }

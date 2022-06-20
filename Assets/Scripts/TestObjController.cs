@@ -10,5 +10,9 @@ public class TestObjController : MonoBehaviour, IGrabable {
         transform.position = parentGO.transform.position;
         transform.localRotation = Quaternion.identity; 
     } 
+    
+    public void DropSpot(){
+        transform.parent = null;
+    }
 
 }
