@@ -1436,7 +1436,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 8299509888509328999}
-  gcc: {fileID: 0}
+  grabPos: {fileID: 1507640054}
+  dropPos: {fileID: 147956176}
 --- !u!54 &8299509888509329005
 Rigidbody:
   m_ObjectHideFlags: 0
