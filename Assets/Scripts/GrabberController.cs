@@ -9,6 +9,11 @@ public class GrabberController : MonoBehaviour{
     public Transform capturePos;
 
     public GameObject otherObj;
+    public BoxCollider thisCollider;
+    
+    void Awake(){
+        thisCollider = GetComponent<BoxCollider>();
+    }
     
     void OnTriggerEnter(Collider other){
         otherObj = other.gameObject;
@@ -24,17 +29,19 @@ public class GrabberController : MonoBehaviour{
     
     // TODO: check if the drop spot is unoccupied
     void GrabberDrop(){
-        if(otherObj != null){
-            Debug.Log("Dropping");
-            var grab = otherObj.GetComponent<IGrabable>();
-            grab?.DropSpot(this.transform);
-            
-            GrabberDeactivate();
-        } 
+        Debug.Log("Dropping");
+        var grab = otherObj?.GetComponent<IGrabable>();
+        grab?.DropSpot(capturePos.transform);
+        animator.SetBool("IsGrabPosOccupied", false);
+        otherObj = null;
     }
     
-    public void GrabberDeactivate(){
-        animator.SetBool("IsGrabPosOccupied", false);
+    void DeactivateCollider(){
+        thisCollider.enabled = false;
     }
-
+    
+    void ActivateCollider(){
+        thisCollider.enabled = true;
+    }
+    
 }
