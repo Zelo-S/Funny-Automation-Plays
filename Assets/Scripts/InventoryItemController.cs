@@ -5,5 +5,9 @@ using UnityEngine;
 public class InventoryItemController : MonoBehaviour{
     
     public SOInventoryItem inventoryItem;
+    
+    public GameObject GetInventoryItem(){
+        return inventoryItem.itemGO;
+    }
 
 }

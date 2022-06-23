@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 29e1c24b96eae7842a5ea463c46ded62, type: 3}
-  m_Name: Belt
+  m_Name: Empty
   m_EditorClassIdentifier: 
-  index: 1
-  amount: 1
-  itemGO: {fileID: 1409734867301869358, guid: 9d2622642623ddc438b11163b341ec05, type: 3}
-  itemImage: {fileID: 21300000, guid: ed5302232a839ff4c98babf4f32e3f6c, type: 3}
+  index: 0
+  amount: 0
+  itemGO: {fileID: 7058822154830371381, guid: 60b067af034e07544a0dbb4c447635cc, type: 3}
+  itemImage: {fileID: 21300000, guid: c231ef407f73c414cad11c558e9c5c40, type: 3}
