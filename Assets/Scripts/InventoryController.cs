@@ -43,13 +43,16 @@ public class InventoryController : MonoBehaviour{
     }
     
     void UpdateDisplayedArmItem(){
-        var inventoryItemGameObject = currentActive.GetComponent<InventoryItemController>().GetInventoryItem();
+        GameObject inventoryItemGameObject = currentActive.GetComponent<InventoryItemController>().GetInventoryItem();
         if(armHoldObjectDisplayPos.transform.childCount != 0){
             foreach(Transform child in armHoldObjectDisplayPos.transform) Destroy(child.gameObject);
         }
 
-        Debug.Log("Attempting instantiate"); 
-        Instantiate(inventoryItemGameObject, armHoldObjectDisplayPos.transform);
+        Vector3 originalScale = inventoryItemGameObject.transform.localScale;
+        Debug.Log("original scale is: " + originalScale);
+
+        GameObject instantiatedInventoryItem = Instantiate(inventoryItemGameObject, armHoldObjectDisplayPos.transform);
+        instantiatedInventoryItem.transform.localScale = originalScale;
     }
 
 }
