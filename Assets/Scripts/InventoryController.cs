@@ -49,10 +49,13 @@ public class InventoryController : MonoBehaviour{
         }
 
         Vector3 originalScale = inventoryItemGameObject.transform.localScale;
-        Debug.Log("original scale is: " + originalScale);
+        originalScale.z *= 0.2f; // parent scale isn't correct
 
+        // this is the actual held item
         GameObject instantiatedInventoryItem = Instantiate(inventoryItemGameObject, armHoldObjectDisplayPos.transform);
         instantiatedInventoryItem.transform.localScale = originalScale;
+        instantiatedInventoryItem.GetComponent<BoxCollider>().enabled = false; // stop it from interacting with world
+
     }
 
 }
