@@ -5,7 +5,8 @@ using UnityEngine;
 public class CrosshairController : MonoBehaviour{
     
     public Canvas crosshair;
-    private IInteractable hitObj;
+    public GameObject hitObj;
+    private IInteractable hitInteractable;
 
     void Update(){
         ClickControl();
@@ -17,14 +18,16 @@ public class CrosshairController : MonoBehaviour{
     
     void ClickControl(){
         if(Input.GetMouseButton(0)){
-            hitObj?.Use();
+            // Debug.Log("Hit the: " + hitObj);
+            hitInteractable?.Use();
         }
     }
     
     void UpdateCrosshair(){
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity)){
-            hitObj = hit.transform.gameObject.GetComponentInChildren<IInteractable>();
+            hitObj = hit.transform.gameObject;
+            hitInteractable = hitObj.GetComponentInChildren<IInteractable>();
             Debug.DrawLine(transform.position, hit.point);
         }
     }

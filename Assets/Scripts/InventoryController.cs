@@ -9,6 +9,11 @@ public class InventoryController : MonoBehaviour{
     private GameObject previousActive;
     public GameObject currentActive;
     public GameObject armHoldObjectDisplayPos;
+    public bool isHoldingObject{ get; private set; }
+    
+    void Awake(){
+        isHoldingObject = false;
+    }
     
     void Update(){
         SelectInventoryItem();
@@ -55,6 +60,8 @@ public class InventoryController : MonoBehaviour{
         GameObject instantiatedInventoryItem = Instantiate(inventoryItemGameObject, armHoldObjectDisplayPos.transform);
         instantiatedInventoryItem.transform.localScale = originalScale;
         instantiatedInventoryItem.GetComponent<BoxCollider>().enabled = false; // stop it from interacting with world
+
+        isHoldingObject = true;
 
     }
 

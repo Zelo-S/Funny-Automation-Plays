@@ -658,7 +658,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700251816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -689,7 +689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748291441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1134,6 +1134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshair: {fileID: 158905739}
+  hitObj: {fileID: 0}
 --- !u!1 &1357549036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1337,6 +1338,11 @@ MonoBehaviour:
   - {fileID: 1823468748}
   currentActive: {fileID: 0}
   armHoldObjectDisplayPos: {fileID: 493516442}
+--- !u!1 &1441592967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1409734867301869358, guid: 9d2622642623ddc438b11163b341ec05, type: 3}
+  m_PrefabInstance: {fileID: 292488474520415216}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1574994455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1513,7 +1519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638352466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2026,7 +2032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112369041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalPosition: {x: -1, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2040,6 +2046,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1135706728226278433, guid: 9d2622642623ddc438b11163b341ec05, type: 3}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1409734867301869358, guid: 9d2622642623ddc438b11163b341ec05, type: 3}
       propertyPath: m_Name
       value: SimpleBeltV4
@@ -2095,6 +2105,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1791221849203604884, guid: 9d2622642623ddc438b11163b341ec05, type: 3}
   m_PrefabInstance: {fileID: 292488474520415216}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2077446405959292522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441592967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9c30e5faebdf34a86f5b0e7d6022aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  snapPoints:
+  - {fileID: 1638352466}
+  - {fileID: 2112369041}
+  - {fileID: 700251816}
+  - {fileID: 748291441}
 --- !u!1001 &5803995908092993388
 PrefabInstance:
   m_ObjectHideFlags: 0
