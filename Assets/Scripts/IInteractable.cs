@@ -5,6 +5,5 @@ using UnityEngine;
 public interface IInteractable {
     
     void Use(); 
-    void Use(RaycastHit hitPoint);
 
 }
