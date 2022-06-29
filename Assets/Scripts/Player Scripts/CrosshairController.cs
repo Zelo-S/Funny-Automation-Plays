@@ -18,7 +18,7 @@ public class CrosshairController : MonoBehaviour{
     }
     
     void ClickControl(){
-        if(Input.GetMouseButton(0)){
+        if(Input.GetMouseButtonDown(0)){
             // Debug.Log("Hit the: " + hitObj);
             hitInteractable?.Use();
         }

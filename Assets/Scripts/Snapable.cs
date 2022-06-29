@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// quick comment: I dont really know why im using an abstract here lol
 public abstract class Snapable : MonoBehaviour{
     
     public List<GameObject> snapPoints;
     public GameObject snapPointIndicator;
+    public GameObject closestSnapPoint;
     private GameObject previousSnapPoint;
+    
 
     public void SnapToPoint(RaycastHit hit){
-        GameObject closestSnapPoint = snapPoints[0];
+        closestSnapPoint = snapPoints[0];
         foreach(GameObject snapPoint in snapPoints){
             float curr_distance = Vector3.Distance( hit.point, snapPoint.transform.position );
             if( Vector3.Distance(hit.point, closestSnapPoint.transform.position) > curr_distance ) closestSnapPoint = snapPoint;
@@ -25,5 +28,7 @@ public abstract class Snapable : MonoBehaviour{
         
         previousSnapPoint = closestSnapPoint;
     }
+    
+    public abstract void InstantiateAtSnapPoint();
 
 }
