@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // quick comment: I dont really know why im using an abstract here lol
-public abstract class Snapable : MonoBehaviour{
+public class Snapable : MonoBehaviour, IInteractable{
     
     public List<GameObject> snapPoints;
     public GameObject snapPointIndicator;
@@ -28,7 +28,15 @@ public abstract class Snapable : MonoBehaviour{
         
         previousSnapPoint = closestSnapPoint;
     }
-    
-    public abstract void InstantiateAtSnapPoint();
+
+    public void Use(){
+        InstantiateAtSnapPoint();        
+    }
+
+    public void InstantiateAtSnapPoint() {
+        Vector3 instantiatePosition = gameObject.transform.position + closestSnapPoint.transform.forward; 
+        Debug.Log("making at: " + instantiatePosition);
+        Instantiate(gameObject, instantiatePosition, Quaternion.identity);
+    }
 
 }
