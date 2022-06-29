@@ -21,6 +21,8 @@ public class CrosshairController : MonoBehaviour{
         if(Input.GetMouseButtonDown(0)){
             // Debug.Log("Hit the: " + hitObj);
             hitInteractable?.Use();
+        }if(Input.GetMouseButtonDown(1)){
+            hitSnapable?.WipeSnapPoints(); 
         }
     }
     
@@ -30,15 +32,15 @@ public class CrosshairController : MonoBehaviour{
             hitObj = hit.transform.gameObject;
             hitInteractable = hitObj.GetComponentInChildren<IInteractable>();
             hitSnapable = hitObj.GetComponentInChildren<Snapable>();
-
-            if(hitSnapable != null) Snap(hit);
+            
+            if(hitSnapable != null){ 
+                Snap(hit);
+            }
 
             Debug.DrawLine(transform.position, hit.point);
         }
     }
-    
     void Snap(RaycastHit hit){
         hitSnapable?.SnapToPoint(hit);
     }
-
 }

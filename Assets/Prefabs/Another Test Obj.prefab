@@ -152,6 +152,7 @@ MonoBehaviour:
   - {fileID: 621127320679300354}
   snapPointIndicator: {fileID: 4647268727020339656, guid: cc369a78b736c9d4f9941a497ceb063f, type: 3}
   closestSnapPoint: {fileID: 0}
+  selfGameObject: {fileID: 621127320379617434}
 --- !u!1 &621127320498590998
 GameObject:
   m_ObjectHideFlags: 0

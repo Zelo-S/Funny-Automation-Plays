@@ -9,7 +9,7 @@ public class Snapable : MonoBehaviour, IInteractable{
     public GameObject snapPointIndicator;
     public GameObject closestSnapPoint;
     private GameObject previousSnapPoint;
-    
+    public GameObject selfGameObject;
 
     public void SnapToPoint(RaycastHit hit){
         closestSnapPoint = snapPoints[0];
@@ -21,12 +21,18 @@ public class Snapable : MonoBehaviour, IInteractable{
 
         // now we have shortest distance to snapPoint
         if(!closestSnapPoint.Equals(previousSnapPoint)) {
-            Instantiate(snapPointIndicator, closestSnapPoint.transform);
+            var snapPointIndicatorMade = Instantiate(snapPointIndicator, closestSnapPoint.transform);
             if(previousSnapPoint == null) previousSnapPoint = closestSnapPoint;
             else if(previousSnapPoint.transform.childCount != 0) foreach(Transform child in previousSnapPoint.transform) Destroy(child.gameObject);
         }
         
         previousSnapPoint = closestSnapPoint;
+    }
+    
+    public void WipeSnapPoints(){
+        Debug.Log("Wiping snap points");
+        if(previousSnapPoint.transform.childCount != 0) foreach(Transform child in previousSnapPoint.transform) Destroy(child.gameObject);
+        if(closestSnapPoint.transform.childCount != 0) foreach(Transform child in closestSnapPoint.transform) Destroy(child.gameObject);
     }
 
     public void Use(){
@@ -35,8 +41,7 @@ public class Snapable : MonoBehaviour, IInteractable{
 
     public void InstantiateAtSnapPoint() {
         Vector3 instantiatePosition = gameObject.transform.position + closestSnapPoint.transform.forward; 
-        Debug.Log("making at: " + instantiatePosition);
-        Instantiate(gameObject, instantiatePosition, Quaternion.identity);
+        Instantiate(selfGameObject, instantiatePosition, Quaternion.identity);
     }
 
 }
