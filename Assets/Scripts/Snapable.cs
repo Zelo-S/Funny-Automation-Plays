@@ -10,6 +10,17 @@ public class Snapable : MonoBehaviour, IInteractable{
     public GameObject closestSnapPoint;
     public GameObject previousSnapPoint;
     public GameObject selfGameObject;
+    public InventoryController playerInventory;
+    public GameObject currentOfPlayerInventory;
+
+    void Awake(){
+        playerInventory = FindObjectOfType<InventoryController>();
+        if(playerInventory) Debug.Log("Got player Inventory");
+    }
+
+    void Update(){
+        currentOfPlayerInventory = playerInventory.currentActiveObject;
+    }
 
     public void SnapToPoint(RaycastHit hit){
         closestSnapPoint = snapPoints[0];
@@ -49,7 +60,7 @@ public class Snapable : MonoBehaviour, IInteractable{
 
     public void InstantiateAtSnapPoint() {
         Vector3 instantiatePosition = gameObject.transform.position + closestSnapPoint.transform.forward; 
-        GameObject instantiatedSnapObject = Instantiate(selfGameObject, instantiatePosition, Quaternion.identity);
+        GameObject instantiatedSnapObject = Instantiate(currentOfPlayerInventory, instantiatePosition, Quaternion.identity);
         instantiatedSnapObject.GetComponent<Snapable>()?.WipeSnapPoints(); // Reason: Instantiated objects would create 2 snap points at creation
     }
 

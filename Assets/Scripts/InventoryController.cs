@@ -8,6 +8,7 @@ public class InventoryController : MonoBehaviour{
     public List<GameObject> inventory;
     private GameObject previousActive;
     public GameObject currentActive;
+    public GameObject currentActiveObject{ get; private set; }
     public GameObject armHoldObjectDisplayPos;
     public bool isHoldingObject{ get; private set; }
     
@@ -40,7 +41,10 @@ public class InventoryController : MonoBehaviour{
         var inventoryImage = inventory[index].GetComponentInChildren<Image>();
         if(inventory != null){
             inventoryImage.color = Color.yellow;
+
             currentActive = inventory[index];
+            currentActiveObject = currentActive.GetComponentInChildren<InventoryItemController>().inventoryItem.itemGO;
+
             UpdateDisplayedArmItem();            
 
             previousActive = currentActive;
