@@ -6,6 +6,7 @@ public class CrosshairController : MonoBehaviour{
     
     public Canvas crosshair;
     public GameObject hitObj;
+    public GameObject prevHitObj;
     private IInteractable hitInteractable;
     private Snapable hitSnapable;
     
@@ -30,6 +31,8 @@ public class CrosshairController : MonoBehaviour{
         RaycastHit hit;
         if(Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity)){
             hitObj = hit.transform.gameObject;
+            HandleSnapClearing();
+
             hitInteractable = hitObj.GetComponentInChildren<IInteractable>();
             hitSnapable = hitObj.GetComponentInChildren<Snapable>();
             
@@ -42,5 +45,18 @@ public class CrosshairController : MonoBehaviour{
     }
     void Snap(RaycastHit hit){
         hitSnapable?.SnapToPoint(hit);
+    }
+    
+    void HandleSnapClearing(){
+        if(!hitObj.Equals(prevHitObj)){
+            Debug.Log(hitObj + " versus " + prevHitObj);
+            if(prevHitObj == null){
+                prevHitObj = hitObj;
+            }else{
+                var prevHitSnapable = prevHitObj.GetComponentInChildren<Snapable>();
+                hitSnapable?.WipeSnapPoints();
+            }
+        }
+        prevHitObj = hitObj;
     }
 }

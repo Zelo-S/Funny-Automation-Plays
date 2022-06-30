@@ -8,7 +8,7 @@ public class Snapable : MonoBehaviour, IInteractable{
     public List<GameObject> snapPoints;
     public GameObject snapPointIndicator;
     public GameObject closestSnapPoint;
-    private GameObject previousSnapPoint;
+    public GameObject previousSnapPoint;
     public GameObject selfGameObject;
 
     public void SnapToPoint(RaycastHit hit){
@@ -30,9 +30,17 @@ public class Snapable : MonoBehaviour, IInteractable{
     }
     
     public void WipeSnapPoints(){
-        Debug.Log("Wiping snap points");
-        if(previousSnapPoint.transform.childCount != 0) foreach(Transform child in previousSnapPoint.transform) Destroy(child.gameObject);
-        if(closestSnapPoint.transform.childCount != 0) foreach(Transform child in closestSnapPoint.transform) Destroy(child.gameObject);
+        if(gameObject.transform.childCount != 0){
+            // now iterate through each of the Snap Point child
+            foreach(Transform child in gameObject.transform){
+                if(child.name.Contains("Snap Point")){
+                    foreach(Transform snapChild in child){
+                        Destroy(snapChild.gameObject);
+                    }
+                } 
+            }
+        }
+        previousSnapPoint = null;
     }
 
     public void Use(){
@@ -41,7 +49,8 @@ public class Snapable : MonoBehaviour, IInteractable{
 
     public void InstantiateAtSnapPoint() {
         Vector3 instantiatePosition = gameObject.transform.position + closestSnapPoint.transform.forward; 
-        Instantiate(selfGameObject, instantiatePosition, Quaternion.identity);
+        GameObject instantiatedSnapObject = Instantiate(selfGameObject, instantiatePosition, Quaternion.identity);
+        instantiatedSnapObject.GetComponent<Snapable>()?.WipeSnapPoints(); // Reason: Instantiated objects would create 2 snap points at creation
     }
 
 }
